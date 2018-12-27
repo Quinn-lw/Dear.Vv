@@ -1,0 +1,4 @@
+# Sample db
+https://github.com/datacharmer/test_db
+# BlackHole
+https://mariadb.com/kb/en/library/blackhole/
