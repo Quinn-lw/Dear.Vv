@@ -1,0 +1,30 @@
+# 安装confluent
+wget http://packages.confluent.io/archive/5.1/confluent-5.1.0-2.11.tar.gz
+tar -xzvf confluent-5.1.0-2.11.tar.gz
+cp -R confluent-5.1.0 /opt/
+
+# 添加驱动
+cp debezium-connector-mysql/*jar /opt/confluent-5.1.0/share/java/kafka/
+cp debezium-connector-mongodb/*jar /opt/confluent-5.1.0/share/java/kafka/
+或者
+confluent-hub install debezium/debezium-connector-mysql:0.8.3
+
+# 设置mysql
+## Enabling the binlog
+    server-id         = 223344
+    log_bin           = mysql-bin
+    binlog_format     = row
+    binlog_row_image  = full
+    expire_logs_days  = 10
+## Create a MySQL user for the connector
+A MySQL user must be defined that has all of the following permissions on all of the databases that the connector will monitor:
+    SELECT - enables the connector to select rows from tables in databases; used only when performing a snapshot
+    RELOAD - enables the connector of the FLUSH statement to clear or reload various internal caches, flush tables, or acquire locks; used only when performing a snapshot
+    SHOW DATABASES - enables the connector to see database names by issuing the SHOW DATABASE statement; used only when performing a snapshot
+    REPLICATION SLAVE - enables the connector to connect to and read the binlog of its MySQL server; always required for the connector
+    REPLICATION CLIENT - enables the use of SHOW MASTER STATUS, SHOW SLAVE STATUS, and SHOW BINARY LOGS; always required for the connector
+```
+    GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium' IDENTIFIED BY 'dbz';
+
+## 查看mysql serverid
+show variables like '%serve_id%';
