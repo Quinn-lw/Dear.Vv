@@ -82,8 +82,8 @@ A MySQL user must be defined that has all of the following permissions on all of
 For example, the following statement grants these permissions for a user `debezium` that authenticates with the password `dbz`, where the user can be on any machine:
 
 ```sql
-create user 'debezium'@'%' identified by 'kafka@4PX';
-GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium' IDENTIFIED BY 'kafka@4PX';
+create user 'debezium'@'%' IDENTIFIED BY 'dbzm@4PX';
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium' IDENTIFIED BY 'dbzm@4PX';
 flush privileges;
 ```
 
@@ -126,4 +126,16 @@ Using the MySQL connector is straightforward. Here is an example of the configur
 10. The list of Kafka brokers that this connector will use to write and recover DDL statements to the database history topic.
 11. The name of the [database history topic](https://debezium.io/docs/connectors/mysql/#database-schema-history) where the connector will write and recover DDL statements. This topic is for internal use only and should not be used by consumers.
 12. The flag specifying that the connector should generate on the [schema change topic](https://debezium.io/docs/connectors/mysql/#schema-change-topic) named `fullfillment` events with the DDL changes that *can* be used by consumers.
+
+## Debezium Connector Docs
+
+[Debezium Connector for MySQL](https://debezium.io/docs/connectors/mysql/)
+
+[Debezium Connector for MongoDB](https://debezium.io/docs/connectors/mongodb/)
+
+[Debezium Connector for PostgreSQL](https://debezium.io/docs/connectors/postgresql/)
+
+[Debezium Connector for Oracle](https://debezium.io/docs/connectors/oracle/)
+
+[Debezium Connector for SQL Server](https://debezium.io/docs/connectors/sqlserver/)
 
