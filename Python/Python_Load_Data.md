@@ -77,7 +77,7 @@ df.to_sql('default.test100', engine, if_exists='append',index=False, index_label
 
 
 
-## impala处理
+## 3.impala处理
 
 ### 依赖安装
 
@@ -113,4 +113,17 @@ df = as_pandas(cur)
 ```
 
 
+
+## 4.mysql处理
+
+### 写入mysql
+
+```python
+from urllib import parse
+from sqlalchemy import create_engine
+import pymysql
+
+engine = create_engine("mysql+pymysql://data:%s@localhost:3306/test?charset=utf8" % parse.quote_plus("123@abc"))
+df.to_sql("test123", engine, schema='fpx', if_exists='replace', index=False, index_label=False)
+```
 
