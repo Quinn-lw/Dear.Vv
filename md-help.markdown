@@ -210,7 +210,7 @@ cond(no)->sub->io
 
 #### 示例 1
 
-```seq
+```sequence
 Alice->Bob: Hello Bob, how are you?
 Note right of Bob: Bob thinks
 Bob-->Alice: I am good thanks!
@@ -218,7 +218,7 @@ Bob-->Alice: I am good thanks!
 
 #### 示例 2
 
-```seq
+```sequence
 Title: Here is a title
 A->B: Normal line
 B-->C: Dashed line
@@ -228,45 +228,64 @@ D-->>A: Dashed open arrow
 
 #### 更多语法参考：[序列图语法参考](http://bramp.github.io/js-sequence-diagrams/)
 
-### 9. 甘特图
+### 9. Mermaid 甘特图
 
 甘特图内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。
 
-```gantt
-    title 项目开发流程
-    section 项目确定
-        需求分析       :a1, 2016-06-22, 3d
-        可行性报告     :after a1, 5d
-        概念验证       : 5d
-    section 项目实施
-        概要设计      :2016-07-05  , 5d
-        详细设计      :2016-07-08, 10d
-        编码          :2016-07-15, 10d
-        测试          :2016-07-22, 5d
-    section 发布验收
-        发布: 2d
-        验收: 3d
+```mermaid
+gantt
+dateFormat  YYYY-MM-DD
+title Shop项目交付计划
+
+section 里程碑 0.1 
+数据库设计          :active,    p1, 2019-05-15, 3d
+详细设计            :           p2, after p1, 2d
+
+section 里程碑 0.2
+后端开发            :           p3, 2019-05-22, 20d
+前端开发            :           p4, 2019-05-22, 15d
+
+section 里程碑 0.3
+功能测试            :       p6, after p3, 5d
+上线               :       p7, after p6, 2d
+交付               :       p8, afterp7, 2d
 ```
 
 #### 更多语法参考：[甘特图语法参考](https://knsv.github.io/mermaid/#gant-diagrams)
 
 ### 10. Mermaid 流程图
 
-```graphLR
-    A[Hard edge] -->|Link text| B(Round edge)
-    B --> C{Decision}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
+```mermaid
+graph TD
+client1-->|read / write|SVN((SVN server))
+client2-->|read only|SVN
+client3-->|read / write|SVN
+client4-->|read only|SVN
+client5(...)-->SVN
+SVN---|store the data|sharedrive
 ```
 
 #### 更多语法参考：[Mermaid 流程图语法参考](https://knsv.github.io/mermaid/#flowcharts-basic-syntax)
 
 ### 11. Mermaid 序列图
 
-```sequence
-    Alice->John: Hello John, how are you?
-    loop every minute
-        John-->Alice: Great!
+```mermaid
+sequenceDiagram
+    participant z as 张三
+    participant l as 李四
+    loop 日复一日
+        z->>l: 吃了吗您呐？
+        l-->>z: 吃了，您呢？
+        activate z
+        Note left of z: 想了一下
+        alt 还没吃
+            z-xl: 还没呢，正准备回去吃
+        else 已经吃了
+            z-xl: 我也吃过了，哈哈
+        end
+        opt 大过年的
+            l-->z: 祝您新年好啊
+        end
     end
 ```
 
@@ -355,7 +374,7 @@ D-->>A: Dashed open arrow
         - [ ] 准备邮轮上需要携带的物品
         - [ ] 浏览日本免税店的物品
         - [x] 购买蓝宝石公主号七月一日的船票
-        
+
 对应显示如下待办事宜 Todo 列表：
         
 - [ ] **Cmd Markdown 开发**
@@ -369,7 +388,7 @@ D-->>A: Dashed open arrow
     - [ ] 准备邮轮上需要携带的物品
     - [ ] 浏览日本免税店的物品
     - [x] 购买蓝宝石公主号七月一日的船票
-        
+      
         
 [^footnote]: 这是一个 *注脚* 的 **文本**。
 
