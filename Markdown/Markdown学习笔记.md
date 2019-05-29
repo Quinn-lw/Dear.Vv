@@ -88,31 +88,58 @@ $\vec {a+b}$ | $\vec {a+b}$
 $$softmax(x_i) = \frac {e^{x_i}}{\sum_{j=0}^N{e^x_j}}$$
 
 ##  1.8  算式与特殊符号
-源码 | 呈现
-----|----
-`$\pm$`| $\pm$
-`$\div$`| $\div$
-`$\times$`| $\times$
-` $\sum$`| $\sum$
-` $\prod$`| $\prod$
-` $\leq$`| $\leq$
-`$\neq$`| $\neq$
-`$\geq$`| $\geq$
-`$\infty$`|$\infty$
-`$\cup$`|  $\cup$
-`$\cap$`| $\cap$
-`$\subset$`| $\subset$
-`$\subseteq$`| $\subseteq$
-`$\supset$`| $\supset$
-`$\supseteq$`| $\supseteq$
-`$\in$`| $\in$
-`$\notin$`| $\notin$
-`$\varnothing$`| $\varnothing$
-`$\forall$`| $\forall$
-`$\exist$`| $\exist$
-`$\lnot$`| $\lnot$
-`$\nabla$`| $\nabla$
-`$\partial$`|$\partial$
+源码 | 呈现 | 描述
+----|---- | ----
+`$\pm$`| $\pm$ | 正负号
+`$\div$`| $\div$ | 除号
+`$\times$`| $\times$ | 乘号
+`$\otimes$`| $\otimes$ | 克罗内克积 
+`$\bigotimes$`| $\bigotimes$ | 克罗内克积 
+`$\mid$`| $\mid$ | 竖线
+`$\cdot$`| $\cdot$ | 点
+`$\cdots$`| $\cdots$ | 省略号
+`$\vdots$`| $\vdots$ | 省略号 
+`$\ddots$`| $\ddots$ | s省略号 
+`$\circ$`| $\circ$ | 圈
+`$\ast$`| $\ast$ | 星 
+`$\nabla$`| $\nabla$ | 梯度 
+` $\sum$`| $\sum$ | 求和 
+`$\int$`| $\int$ | 求积分 
+`$\iint$`| $\iint$ | 双重积分 
+`$\oint$`| $\oint$ | 曲线积分 
+` $\prod$`| $\prod$ | N元乘积 
+`$\coprod$`| $\coprod$ | N元余积 
+` $\leq$`| $\leq$ | 小于等于 
+`$\neq$`| $\neq$ | 不等于 
+`$\geq$`| $\geq$ | 大于等于 
+`$\approx$`| $\approx$ | 约等于 
+`$\infty$`|$\infty$ | 无穷 
+`$\because$`|$\because$ | 因为 
+`$\therefore$`|$\therefore$ | 所以 
+`$\vee$`| $\vee$ | 逻辑或 
+`$\wedge$`| $\wedge$ | 逻辑与 
+`$\bigoplus$`| $\bigoplus$ | 异或 
+`$\subset$`| $\subset$ | 子集 
+`$\subseteq$`| $\subseteq$ | 真子集 
+`$\not\subset$`| $\not\subset$  | 不属于 
+`$\supset$`| $\supset$ | 
+`$\supseteq$`| $\supseteq$ | 
+`$\cup$`|  $\cup$ | 并集 
+`$\cap$`| $\cap$ | 交集 
+`$\in$`| $\in$ | 属于 
+`$\notin$`| $\notin$ | 不属于 
+`$\varnothing$`| $\varnothing$ | 
+`$\emptyset$`| $\emptyset$ | 空集 
+`$\forall$`| $\forall$ | 任意 
+`$\exist$`| $\exist$ | 存在 
+`$\lnot$`| $\lnot$ | 
+`$\partial$`|$\partial$ | 
+`$\hat{y}$`|$\hat{y}$ | 期望值 
+`$\check{y}$`|$\check{y}$ |  
+`$\overline{a+b+c+d}$`|$\overline{a+b+c+d}$ | 平均值 
+`$\underline{a+b+c+d}$`|$\underline{a+b+c+d}$ |  
+`\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}`|$\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}$ |  
+`$\lbrace \rbrace$`|$\lbrace \rbrace$ |  
 
 ## 1.9  矩阵
 `\begin{matrix}` 标识开始
