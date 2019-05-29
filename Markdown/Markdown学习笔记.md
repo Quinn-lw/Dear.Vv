@@ -54,7 +54,7 @@ $\vec {a+b}$ | $\vec {a+b}$
 
 ## 1.5 分组与括号
 利用{}来进行分组，分组就是将{}内看做一个整体的意思， 比如不分组时`$10^20$` 效果为$10^20$
-可以看到20被分隔开了，10的20次方正确的写法应该为`$10^{20}$`    效果：$10^{20}​$
+可以看到20被分隔开了，10的20次方正确的写法应该为`$10^{20}$`    效果：$10^{20}$
 接下来是括号：
 
 源码 | 呈现
@@ -156,3 +156,85 @@ a_3x+b_3y+c_3z=d_3\\
 \end{cases}
 $$
 
+## 1.11 箭头符号
+
+### 1.11.1 基本箭头
+
+| 符号 | MarkDown |
+| ---- | -------- |
+| $\uparrow$ | `$\uparrow$` |
+| $\Uparrow$ | `$\Uparrow$` |
+| $\downarrow$ | `$\downarrow$` |
+| $\Downarrow$ | `$\Downarrow$` |
+| $\leftarrow$ | `$\leftarrow$` |
+| $\Leftarrow$ | `$\Leftarrow$` |
+| $\rightarrow$ | `$\rightarrow$` |
+| $\Rightarrow$ | `$\Rightarrow$` |
+| $\updownarrow$ | `$\updownarrow$` |
+| $\Updownarrow$ | `$\Updownarrow$` |
+| $\leftrightarrow$ | `$\leftrightarrow$` |
+
+### 1.11.2 长箭头
+
+| 符号 | MarkDown |
+| ---- | -------- |
+| $\longleftarrow$ | `$\longleftarrow$` |
+| $\Longleftarrow$ | `$\Longleftarrow$` |
+| $\longrightarrow$ | `$\longrightarrow$` |
+| $\Longrightarrow$ | `$\Longrightarrow$` |
+| $\longleftrightarrow$ | `$\longleftrightarrow$` |
+| $\Longleftrightarrow$ | `$\Longleftrightarrow$` |
+
+### 1.11.3 更多
+
+| 符号 | MarkDown |
+| ---- | -------- |
+| $\twoheadrightarrow$ | `$\twoheadrightarrow$` |
+| $\rightarrowtail$ | `$\rightarrowtail$` |
+| $\looparrowright$ | `$\looparrowright$` |
+| $\curvearrowright$ | `$\curvearrowright$` |
+| $\circlearrowright$ | `$\circlearrowright$` |
+| $\Rsh$ | `$\Rsh$` |
+| $\multimap$ | `$\multimap$` |
+| $\leftrightsquigarrow$ | `$\leftrightsquigarrow$` |
+| $\rightsquigarrow$ | `$\rightsquigarrow$` |
+| $\leadsto$ | `$\leadsto$` |
+| $\nearrow$ | `$\nearrow$` |
+| $\searrow$ | `$\searrow$` |
+| $\swarrow$ | `$\swarrow$` |
+| $\nwarrow$ | `$\nwarrow$` |
+| $\nleftarrow$ | `$\nleftarrow$` |
+| $\nrightarrow$ | `$\nrightarrow$` |
+| $\nLeftarrow$ | `$\nLeftarrow$` |
+| $\nRightarrow$ | `$\nRightarrow$` |
+| $\nleftrightarrow$ | `$\nleftrightarrow$` |
+| $\nLeftrightarrow$ | `$\nLeftrightarrow$` |
+| $\dashrightarrow$ | `$\dashrightarrow$` |
+| $\dashleftarrow$ | `$\dashleftarrow$` |
+| $\leftleftarrows$ | `$\leftleftarrows$` |
+| $\leftrightarrows$ | `$\leftrightarrows$` |
+| $\Lleftarrow$ | `$\Lleftarrow$` |
+| $\twoheadleftarrow$ | `$\twoheadleftarrow$` |
+| $\leftarrowtail$ | `$\leftarrowtail$` |
+| $\looparrowleft$ | `$\looparrowleft$` |
+| $\curvearrowleft$ | `$\curvearrowleft$` |
+| $\circlearrowleft$ | `$\circlearrowleft$` |
+| $\Lsh$ | `$\Lsh$` |
+| $\mapsto$ | `$\mapsto$` |
+| $\hookleftarrow$ | `$\hookleftarrow$` |
+| $\hookrightarrow$ | `$\hookrightarrow$` |
+| $\upharpoonright$ | `$\upharpoonright$` |
+| $\upharpoonleft$ | `$\upharpoonleft$` |
+| $\downharpoonright$ | `$\downharpoonright$` |
+| $\downharpoonleft$ | `$\downharpoonleft$` |
+| $\leftharpoonup$ | `$\leftharpoonup$` |
+| $\rightharpoonup$ | `$\rightharpoonup$` |
+| $\leftharpoondown$ | `$\leftharpoondown$` |
+| $\rightharpoondown$ | `$\rightharpoondown$` |
+| $\upuparrows$ | `$\upuparrows$` |
+| $\downdownarrows$ | `$\downdownarrows$` |
+| $\rightrightarrows$ | `$\rightrightarrows$` |
+| $\rightleftarrows$ | `$\rightleftarrows$` |
+| $\rightrightarrows$ | `$\rightrightarrows$` |
+| $\rightleftarrows$ | `$\rightleftarrows$` |
+| $\rightleftharpoons$ | `$\rightleftharpoons$` |

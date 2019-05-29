@@ -157,6 +157,71 @@ except Exception:
 
 ### Receiving Email
 
+Example:
+
+```python
+def checkMailAccount(server,user,password,ssl=False,port=None):
+    '''
+    Check Mail Account
+    '''
+    if not port:
+        port = 995 if ssl else 110
+
+    try:
+        pop3 = poplib.POP3_SSL(server, port) if ssl else poplib.POP3(server, port)
+
+        pop3.user(user)
+        auth = pop3.pass_(password)
+        pop3.quit()
+    except Exception as error:
+        #print "[!] chekcing {0} failed, reason:{1}".format(user, str(error))
+        return False
+
+    if "+OK" in auth:
+        return True
+    else:
+        return False 
+```
+
+```python
+def popPeek(server, user, port=110):
+    '''
+    A quick look of mail
+    '''
+
+    try:
+        P = poplib.POP3(server, port)
+        P.user(user)
+        P.pass_(getpass.getpass())
+    except:
+        print "Failed to connect to server."
+        sys.exit(1)
+
+    deleted = 0
+
+    try:
+        l = P.list()
+        msgcount = len(l[1])
+        for i in range(msgcount):
+            msg = i+1
+            top = P.top(msg, 0)
+            for line in top[1]:
+                print line
+            input = raw_input("D to delete, any other key to leave message on server: ")
+            if input=="D":
+                P.dele(msg)
+                deleted += 1
+        P.quit()                
+        print "%d messages deleted. %d messages left on server" % (deleted, msgcount-deleted)
+    except:
+        P.rset()
+        P.quit()
+        deleted = 0
+        print "\n%d messages deleted. %d messages left on server" % (deleted, msgcount-deleted)
+```
+
+
+
 ```python
 #!/usr/bin/env python
 # coding=utf-8
