@@ -15,9 +15,7 @@ $$
 \begin{matrix}
 x_1 \\
 x_2 \\
-. \\
-. \\
-. \\
+\vdots \\
 x_n
 \end{matrix}
 \right] \tag{1}
@@ -27,12 +25,10 @@ $$
 X = 
 \left[
 \begin{matrix}
-x_{1,1} & x_{1,2} & \dots & x_{1,n} \\
-x_{2,1} & x_{2,2} & \dots & x_{2,n} \\
-. & . & \dots & . \\
-. & . & \dots & . \\
-. & . & \dots & . \\
-x_{m,1} & x_{m,2} & \dots & x_{m,n}
+x_{1,1} & x_{1,2} & \cdots & x_{1,n} \\
+x_{2,1} & x_{2,2} & \cdots & x_{2,n} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{m,1} & x_{m,2} & \cdots & x_{m,n}
 \end{matrix}
 \right] \tag{2}
 $$
@@ -74,8 +70,57 @@ $$
 $$
 \vec u = u_x \vec i + u_y \vec j + u_z \vec k, \\
 \vec v = v_x \vec i + v_y \vec j + v_z \vec k
+\tag{4}
 $$
 
+- $\vec u$和$\vec v$的叉积垂直于 $\vec u, \vec v$构成的平面，其方向符合右手规则
+- 叉积的模等于$\vec u, \vec v$构成的平行四边形的面积
+- $\vec u \times \vec v = -\vec v \times \vec u$
+- $\vec u \times (\vec v \times \vec w) = (\vec u \cdot \vec w)\vec v - (\vec u \cdot \vec v)\vec w$
+
+![cross](http://www.huaxiaozhuan.com/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/imgs/algebra/cross.png)
+
+5.三维向量的混合积：
+$$
+\left[
+\begin{matrix}
+\vec u & \vec v & \vec w
+\end{matrix}
+\right]
+=
+(\vec u \times \vec v) \cdot \vec w
+=
+\vec u \cdot (\vec v \times \vec w)
+= \left|
+\begin{matrix}
+u_x & u_y & u_z \\
+v_x & v_y & v_z \\
+w_x & w_y & w_z
+\end{matrix}
+\right|
+= \left|
+\begin{matrix}
+u_x & v_x & w_x \\
+u_y & v_y & w_y \\
+u_z & v_z & w_z
+\end{matrix}
+\right| \tag{5}
+$$
+其物理意义为：以$\vec u, \vec v, \vec w$为三个棱边所围成的平行六面体的面积。当$\vec u, \vec v, \vec w$构成右手系时，该平行六面体的体积为正号
+
+6.两个向量的并失：给定两个向量$\vec x=(x_1, x_2, \cdots, x_n)^T, \vec y = (y_1, y_2, \cdots, y_m)^T$，则向量的并失记作：
+$$
+\vec x \vec y = 
+\left[
+\begin{matrix}
+x_1y_1 & x_1y_2 & \cdots & x_1y_m \\
+x_2y_1 & x_2y_2 & \cdots & x_2y_m \\
+\vdots & \vdots & \ddots & \vdots \\
+x_ny_1 & x_ny_2 & \cdots & x_ny_m
+\end{matrix}
+\right] \tag{6}
+$$
+也记作$\vec x \otimes \vec y$或者$\vec x \vec y^T$
 
 #### 矩阵运算
 
