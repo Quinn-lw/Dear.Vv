@@ -18,7 +18,7 @@ x_2 \\
 \vdots \\
 x_n
 \end{matrix}
-\right] \tag{1}
+\right] \tag{1a}
 $$
 本书中所有的矩阵$X \in R^{m \times n}$都表示为：
 $$
@@ -30,7 +30,7 @@ x_{2,1} & x_{2,2} & \cdots & x_{2,n} \\
 \vdots & \vdots & \ddots & \vdots \\
 x_{m,1} & x_{m,2} & \cdots & x_{m,n}
 \end{matrix}
-\right] \tag{2}
+\right] \tag{1b}
 $$
 简写为：$(x_{i,j})_{m \times n}$或者$[x_{i,j}]_{m,n}$
 
@@ -64,13 +64,13 @@ $$
 u_x & u_y & u_z \\
 v_x & v_y & v_z
 \end{matrix}
-\right] \tag{3}
+\right] \tag{1c}
 $$
 其中$\vec i, \vec j, \vec k$分别为$x, y, z$轴的单位向量.
 $$
 \vec u = u_x \vec i + u_y \vec j + u_z \vec k, \\
 \vec v = v_x \vec i + v_y \vec j + v_z \vec k
-\tag{4}
+\tag{1d}
 $$
 
 - $\vec u$和$\vec v$的叉积垂直于 $\vec u, \vec v$构成的平面，其方向符合右手规则
@@ -104,7 +104,7 @@ u_x & v_x & w_x \\
 u_y & v_y & w_y \\
 u_z & v_z & w_z
 \end{matrix}
-\right| \tag{5}
+\right| \tag{1e}
 $$
 其物理意义为：以$\vec u, \vec v, \vec w$为三个棱边所围成的平行六面体的面积。当$\vec u, \vec v, \vec w$构成右手系时，该平行六面体的体积为正号
 
@@ -118,13 +118,234 @@ x_2y_1 & x_2y_2 & \cdots & x_2y_m \\
 \vdots & \vdots & \ddots & \vdots \\
 x_ny_1 & x_ny_2 & \cdots & x_ny_m
 \end{matrix}
-\right] \tag{6}
+\right] \tag{1f}
 $$
 也记作$\vec x \otimes \vec y$或者$\vec x \vec y^T$
 
 #### 矩阵运算
 
+1.给定两个矩阵$A=(a_{i,j}) \in R^{m \times n}, B=(b_{i,j} \in R^{m \times n})$，定义：
+
+- 阿达马积`Hadamard product`（又称作逐元素积）：
+
+$$
+A \circ B 
+= 
+\left[
+\begin{matrix}
+a_{1,1}b_{1,1} & a_{1,2}b_{1,2} & \cdots & a_{1,n}b_{1,n} \\
+a_{2,1}b_{2,1} & a_{2,2}b_{2,2} & \cdots & a_{2,n}b_{2,n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m,1}b_{m,1} & a_{m,2}b_{m,2} & \cdots & a_{m,n}b_{m,n}
+\end{matrix}
+\right] \tag{1g}
+$$
+
+
+
+- 克罗内积`Kronnecker product`：
+
+$$
+A \otimes B 
+= 
+\left[
+\begin{matrix}
+a_{1,1}B & a_{1,2}B & \cdots & a_{1,n}B \\
+a_{2,1}B & a_{2,2}B & \cdots & a_{2,n}B \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m,1}B & a_{m,2}B & \cdots & a_{m,n}B
+\end{matrix}
+\right] \tag{1h}
+$$
+
+
+
+2.设$\vec x, \vec a, \vec b, \vec c$为n阶向量，$A, B, C, C$为n阶方阵， 则有：
+$$
+\frac{\delta(\vec a^T \vec x)}{\delta \vec x}
+=
+\frac{\delta(\vec x^T \vec a)}{\delta \vec x}
+=
+\vec a
+\\
+
+\frac{\delta \vec a^TX \vec b}{\delta X}
+=
+\vec a \vec b^T 
+=
+\vec a \otimes \vec b \in R^{n \times n}
+\\
+
+\frac{\delta(\vec a^TX^T \vec b)}{\delta X}
+=
+\vec b \vec a^T
+=
+\vec b \otimes \vec a \in R^{n \times n}
+\\
+
+\frac{\delta(\vec a^T X \vec a)}{\delta X}
+=
+\frac{\delta(\vec a^T X^T \vec a)}{\delta X}
+=
+\vec a \otimes \vec a
+\\
+
+\frac{\delta(\vec a^T X^T X \vec b)}{\delta X}
+=
+X(\vec a \otimes \vec b + \vec b \otimes \vec a)
+\\
+
+\frac{\delta[(A \vec x + \vec a)^T C (B \vec x + \vec b)]}{\delta \vec x}
+=
+A^T C (B \vec x + \vec b) + B^T C (A \vec x + \vec a)
+\\
+
+\frac{\delta (\vec x^T A \vec x)}{\delta \vec x}
+=
+(A + A^T) \vec x
+\\
+
+\frac{\delta[(X \vec b + \vec c)^T A(X \vec b + \vec c)]}{\delta X}
+=
+(A + A^T)(X \vec b + \vec c)\vec b^T
+\\
+
+\frac{\delta (\vec b^T X^T A X \vec c)}{\delta X}
+=
+A^T X \vec b \vec c^T + A X \vec c \vec b^T
+$$
+3.如果$f$是一元函数，则：
+
+- 其逐元向量函数为：$f(\vec x) = (f(x_1), f(x_2), \cdots, f(x_n))T$
+- 其逐矩阵函数为：
+
+$$
+f(X) = 
+\left[
+\begin{matrix}
+f(x_{1,1}) & f(x_{1,2}) & \cdots & f(x_{1, n}) \\
+f(x_{2,1}) & f(x_{2,2}) & \cdots & f(x_{2, n}) \\
+\vdots & \vdots & \ddots & \vdots \\
+f(x_{m,1}) & f(x_{m,2}) & \cdots & f(x_{m, n})
+\end{matrix}
+\right]
+$$
+
+
+
+- 其逐元导数分别为：
+
+$$
+f^\prime = (f^\prime(x_1), f^\prime(x_2), \cdots, f^\prime(x_n))^T \\
+
+f^\prime =
+\left[
+\begin{matrix}
+f^\prime(x_{1,1}) & f^\prime(x_{1,2}) & \cdots & f^\prime(x_{1,n}) \\
+f^\prime(x_{2,1}) & f^\prime(x_{2,2}) & \cdots & f^\prime(x_{2,n}) \\
+\vdots & vcdots & \ddots & \vdots \\
+f^\prime(x_{m,1}) & f^\prime(x_{m,2}) & \cdots & f^\prime(x_{m,n})
+\end{matrix}
+\right]
+$$
+
+4.各种类型的偏导数：
+
+- 标量对标量的偏导数：$\frac{\delta u}{\delta v}$
+- 标量对向量(n维向量)的偏导数：$\frac{\delta u}{\delta \vec v}=(\frac{\delta u}{\delta v_1}, \frac{\delta u}{\delta v_2}, \cdots, \frac{\delta u}{\delta v_n})^T$
+- 标量对矩阵(m x n阶矩阵)的偏导数：
+
+$$
+\frac{\delta u}{\delta V} =
+\left[
+\begin{matrix}
+\frac{\delta u}{\delta V_{1,1}} & \frac{\delta u}{\delta V_{1,2}} & \cdots & \frac{\delta u}{\delta V_{1,n}} \\
+\frac{\delta u}{\delta V_{2,1}} & \frac{\delta u}{\delta V_{2,2}} & \cdots & \frac{\delta u}{\delta V_{2,n}} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\delta u}{\delta V_{m,1}} & \frac{\delta u}{\delta V_{m,2}} & \cdots & \frac{\delta u}{\delta V_{m,n}}
+\end{matrix}
+\right]
+$$
+
+- 向量(m维向量)对标量的偏导数：$\frac{\delta \vec u}{\delta v} = (\frac{\delta u_1}{\delta v}, \frac{\delta u_2}{\delta v}, \cdots, \frac{\delta u_m}{\delta v})^T$
+- 向量(m维向量)对向量(n维向量)的偏导数(雅可比矩阵，行优先)：
+
+$$
+\frac{\delta \vec u}{\delta \vec v} =
+\left[
+\begin{matrix}
+\frac{\delta u_1}{\delta v_1} & \frac{\delta u_1}{\delta v_2} & \cdots & \frac{\delta u_1}{\delta v_n} \\
+\frac{\delta u_2}{\delta v_1} & \frac{\delta u_2}{\delta v_2} & \cdots &
+\frac{\delta u_2}{\delta v_n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\delta u_m}{\delta v_1} & \frac{\delta u_m}{\delta v_2} & \cdots & \frac{\delta u_m}{\delta v_n}
+\end{matrix}
+\right]
+$$
+
+如果为列优先，则为上面矩阵的转置
+
+- 矩阵(m x n阶矩阵)对标量的偏导数：
+
+$$
+\frac{\delta U}{\delta v} =
+\left[
+\begin{matrix}
+\frac{\delta U_{1,1}}{\delta v} & \frac{\delta U_{1,2}}{\delta v} & \cdots & \frac{\delta U_{1,n}}{\delta v} \\
+\frac{\delta U_{2,1}}{\delta v} & \frac{\delta U_{2,2}}{\delta v} & \cdots & \frac{\delta U_{2,n}}{\delta v} \\
+\vdots & \vdots & \ddots & \cdots \\
+\frac{\delta U_{m,1}}{\delta v} & \frac{\delta U_{m,2}}{\delta v} & \cdots & \frac{\delta U_{m,n}}{\delta v}
+\end{matrix}
+\right]
+$$
+
+
+
+5.对于矩阵的迹，有下列偏导数成立：
+$$
+\frac{\delta [tr(f(X))]}{\delta X} = (f^\prime(X))^T \\
+\frac{\delta[tr(AXB)]}{\delta X} = A^TB^T \\
+\frac{\delta[tr(AX^TB)]}{\delta X} = BA \\
+\frac{\delta[tr(A \otimes X)]}{\delta X} = tr(A)I \\
+\frac{\delta[tr(AXBX)]}{\delta X} = A^TX^TB^T + B^TXA^T \\
+\frac{\delta[tr(X^TBXC)]}{\delta X} = BXC + B^TXC^T \\
+\frac{\delta[tr(C^TX^TBXC)]}{\delta X} = (B^T + B)XCC^T \\
+\frac{\delta[tr(AXBX^TC)]}{\delta X} = A^TC^TXB^T + CAXB \\
+\frac{\delta[tr((AXB+C)(AXB+C))]}{\delta X} = 2A^T(AXB+C)B^T
+$$
+
+6.假设$U=f(X)$是关于$X$的据真值函数($f:R^{m \times n} \to R^{m \times n}$)，且$g(U)$是关于$U$的实值函数($g: R^{m \times n} \to R$)，则下面链式法则成立：
+$$
+\frac{\delta g(U)}{\delta X}
+=
+(\frac{\delta g(U)}{\delta x_{i,j}})_{m \times n}
+=
+\left[
+\begin{matrix}
+\frac{\delta g(U)}{\delta x_{1,1}} & \frac{\delta g(U)}{\delta x_{1,2}} & \cdots & \frac{\delta g(U)}{\delta x_{1,n}} \\
+\frac{\delta g(U)}{\delta x_{2,1}} & \frac{\delta g(U)}{\delta x_{2,2}} & \cdots & \frac{\delta g(U)}{\delta x_{2,n}} \\
+\vdots & \vdots & \ddots & \cdots \\
+\frac{\delta g(U)}{\delta x_{m,1}} & \frac{\delta g(U)}{\delta x_{m,2}} & \cdots & \frac{\delta g(U)}{\delta x_{m,n}}
+\end{matrix}
+\right] \\
+=
+(\sum_k \sum_l \frac{\delta g(U)}{\delta u_{k,l}}\frac{\delta u_{k,l}}{\delta x_{i,j}})
+=
+(tr[(\frac{\delta g(U)}{\delta U})^T \frac{\delta U}{\delta x_{i,j}}])
+$$
+
+
 #### 特殊函数
+
+> 这里给出机器学习中用到的一些特殊函数
+
+##### 4.1 sigmoid函数
+
+1.`sigmoid`函数
+$$
+\delta(x) = \frac{1}{a+exp(-x)}
+$$
+
 
 ### 2.概率论基础
 
