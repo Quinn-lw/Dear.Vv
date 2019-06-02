@@ -72,6 +72,7 @@ $\vec {a+b}$ | $\vec {a+b}$
 积分`$\int_0^\infty{f(x)dx}$`| $\int_0^\infty{f(x)dx}$
 分式`$\frac {x+y}{x_0+y_0}$`| $\frac {x+y}{x_0+y_0}$
 根式`$\sqrt[x]{y}$` | $\sqrt[x]{y}$  
+求导`$f^\prime$` | $f^\prime$ 
 
 ## 1.7  常用函数
 源码 | 呈现
@@ -82,6 +83,9 @@ $\vec {a+b}$ | $\vec {a+b}$
 `$\ln{(w*x+b)}$`   |    $\ln{(w*x+b)}$
 `$\max{(w*x+b)}$`   |    $\max{(w*x+b)}$
 `$\min{(w*x+b)}$`   |    $\min{(w*x+b)}$
+`$\lg$` | $\lg$ 
+`$\log$` | $\log$ 
+`\exp` | $\exp$ 
 
 其他函数就按自己想象写就行了比如softmax 函数:
 `$$softmax(x_i) = \frac {e^{x_i}}{\sum_{j=0}^N{e^x_j}}$$`
@@ -114,6 +118,7 @@ $$softmax(x_i) = \frac {e^{x_i}}{\sum_{j=0}^N{e^x_j}}$$
 `$\geq$`| $\geq$ | 大于等于 
 `$\approx$`| $\approx$ | 约等于 
 `$\infty$`|$\infty$ | 无穷 
+`$\to$`|$\to$ | 趋势于 
 `$\because$`|$\because$ | 因为 
 `$\therefore$`|$\therefore$ | 所以 
 `$\vee$`| $\vee$ | 逻辑或 
@@ -141,7 +146,9 @@ $$softmax(x_i) = \frac {e^{x_i}}{\sum_{j=0}^N{e^x_j}}$$
 `\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}`|$\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}$ |  
 `$\lbrace \rbrace$`|$\lbrace \rbrace$ |  
 
-## 1.9  矩阵
+## 1.9  块
+### 1.9.1 矩阵
+
 `\begin{matrix}` 标识开始
 `\end{matrix}`   标识结束
 `pmatrix` 小括号外框
@@ -173,7 +180,21 @@ a_{10}&a_{11}&{\cdots}&{a_{1n}}\\
 a_{m0}&a_{m1}&{\cdots}&{a_{mn}}\\
 \end{vmatrix}
 $$
+### 1.9.2 分段函数
+
+示例：
+$$
+X(m,n) =
+\begin{cases}
+x(n+1) & x \leq -1, \\
+x(n) & -1 < x < 1, \\
+x(n-1) & x \geq 1
+\end{cases}
+$$
+
+
 ## 1.10  方程组
+
 例：
 $$
 \begin{cases}
