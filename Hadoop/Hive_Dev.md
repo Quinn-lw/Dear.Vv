@@ -59,3 +59,28 @@ pom.xml
 
 使用Maven自动下载依赖
 
+## DDL
+### CREATE TABLE
+#### LOAD DATA FROM CSV
+```sql
+DROP TABLE temp.t_ic_jindie;
+CREATE TABLE `temp.t_ic_jindie`(
+  `ic_no` string, 
+  `ic_date` string, 
+  `price_1` string, 
+  `sub_price` string, 
+  `price_2` string, 
+  `cm_code` string, 
+  `cm_name` string, 
+  `pk_code` string, 
+  `pk_name` string)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+    "separatorChar" = ",",
+    "quoteChar"     = "'",
+    "escapeChar"    = "\\"
+)
+STORED AS TEXTFILE;
+
+load data local inpath '/root/20190801_data.csv' into table temp.t_ic_jindie;
+```
