@@ -401,6 +401,23 @@ echo never>/sys/kernel/mm/transparent_hugepage/defrag
 echo never>/sys/kernel/mm/transparent_hugepage/enabled
 ```
 
+### 配置修改
+
+#### 1.Service Monitor
+
+oom_heap_dump_dir 如果默认的/tmp目录空间过小，建议修改为一个空间较大的目录
+
+```
+Impala Catalog Server
+oom_heap_dump_dir /tmp --> /opt/tmp
+Service Monitor
+oom_heap_dump_dir /tmp --> /opt/tmp
+Host Monitor
+oom_heap_dump_dir /tmp --> /opt/tmp
+```
+
+
+
 
 
 

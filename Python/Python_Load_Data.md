@@ -127,3 +127,18 @@ engine = create_engine("mysql+pymysql://data:%s@localhost:3306/test?charset=utf8
 df.to_sql("test123", engine, schema='fpx', if_exists='replace', index=False, index_label=False)
 ```
 
+## 5.Oracle处理
+
+### 安装
+
+```shell
+rpm -ivh oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm
+rpm -ivh oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm
+rpm -ivh oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm
+
+export ORACLE_HOME=/usr/lib/oracle/11.2/client64
+export LD_LIBRARY_PATH=${ORACLE_HOME/lib}
+
+pip install cx_Oracle
+```
+
