@@ -54,7 +54,7 @@ $\vec {a+b}$ | $\vec {a+b}$
 
 ## 1.5 分组与括号
 利用{}来进行分组，分组就是将{}内看做一个整体的意思， 比如不分组时`$10^20$` 效果为$10^20$
-可以看到20被分隔开了，10的20次方正确的写法应该为`$10^{20}$`    效果：$10^{20}​$
+可以看到20被分隔开了，10的20次方正确的写法应该为`$10^{20}$`    效果：$10^{20}$
 接下来是括号：
 
 源码 | 呈现
@@ -72,6 +72,7 @@ $\vec {a+b}$ | $\vec {a+b}$
 积分`$\int_0^\infty{f(x)dx}$`| $\int_0^\infty{f(x)dx}$
 分式`$\frac {x+y}{x_0+y_0}$`| $\frac {x+y}{x_0+y_0}$
 根式`$\sqrt[x]{y}$` | $\sqrt[x]{y}$  
+求导`$f^\prime$` | $f^\prime$ 
 
 ## 1.7  常用函数
 源码 | 呈现
@@ -82,39 +83,72 @@ $\vec {a+b}$ | $\vec {a+b}$
 `$\ln{(w*x+b)}$`   |    $\ln{(w*x+b)}$
 `$\max{(w*x+b)}$`   |    $\max{(w*x+b)}$
 `$\min{(w*x+b)}$`   |    $\min{(w*x+b)}$
+`$\lg$` | $\lg$ 
+`$\log$` | $\log$ 
+`\exp` | $\exp$ 
 
 其他函数就按自己想象写就行了比如softmax 函数:
 `$$softmax(x_i) = \frac {e^{x_i}}{\sum_{j=0}^N{e^x_j}}$$`
 $$softmax(x_i) = \frac {e^{x_i}}{\sum_{j=0}^N{e^x_j}}$$
 
 ##  1.8  算式与特殊符号
-源码 | 呈现
-----|----
-`$\pm$`| $\pm$
-`$\div$`| $\div$
-`$\times$`| $\times$
-` $\sum$`| $\sum$
-` $\prod$`| $\prod$
-` $\leq$`| $\leq$
-`$\neq$`| $\neq$
-`$\geq$`| $\geq$
-`$\infty$`|$\infty$
-`$\cup$`|  $\cup$
-`$\cap$`| $\cap$
-`$\subset$`| $\subset$
-`$\subseteq$`| $\subseteq$
-`$\supset$`| $\supset$
-`$\supseteq$`| $\supseteq$
-`$\in$`| $\in$
-`$\notin$`| $\notin$
-`$\varnothing$`| $\varnothing$
-`$\forall$`| $\forall$
-`$\exist$`| $\exist$
-`$\lnot$`| $\lnot$
-`$\nabla$`| $\nabla$
-`$\partial$`|$\partial$
+源码 | 呈现 | 描述
+----|---- | ----
+`$\pm$`| $\pm$ | 正负号
+`$\div$`| $\div$ | 除号
+`$\times$`| $\times$ | 乘号
+`$\otimes$`| $\otimes$ | 克罗内克积 
+`$\bigotimes$`| $\bigotimes$ | 克罗内克积 
+`$\mid$`| $\mid$ | 竖线
+`$\cdot$`| $\cdot$ | 点
+`$\cdots$`| $\cdots$ | 省略号
+`$\vdots$`| $\vdots$ | 省略号 
+`$\ddots$`| $\ddots$ | s省略号 
+`$\circ$`| $\circ$ | 圈
+`$\ast$`| $\ast$ | 星 
+`$\nabla$`| $\nabla$ | 梯度 
+` $\sum$`| $\sum$ | 求和 
+`$\int$`| $\int$ | 求积分 
+`$\iint$`| $\iint$ | 双重积分 
+`$\oint$`| $\oint$ | 曲线积分 
+` $\prod$`| $\prod$ | N元乘积 
+`$\coprod$`| $\coprod$ | N元余积 
+` $\leq$`| $\leq$ | 小于等于 
+`$\neq$`| $\neq$ | 不等于 
+`$\geq$`| $\geq$ | 大于等于 
+`$\approx$`| $\approx$ | 约等于 
+`$\infty$`|$\infty$ | 无穷 
+`$\to$`|$\to$ | 趋势于 
+`$\because$`|$\because$ | 因为 
+`$\therefore$`|$\therefore$ | 所以 
+`$\vee$`| $\vee$ | 逻辑或 
+`$\wedge$`| $\wedge$ | 逻辑与 
+`$\bigoplus$`| $\bigoplus$ | 异或 
+`$\subset$`| $\subset$ | 子集 
+`$\subseteq$`| $\subseteq$ | 真子集 
+`$\not\subset$`| $\not\subset$  | 不属于 
+`$\supset$`| $\supset$ | 
+`$\supseteq$`| $\supseteq$ | 
+`$\cup$`|  $\cup$ | 并集 
+`$\cap$`| $\cap$ | 交集 
+`$\in$`| $\in$ | 属于 
+`$\notin$`| $\notin$ | 不属于 
+`$\varnothing$`| $\varnothing$ | 
+`$\emptyset$`| $\emptyset$ | 空集 
+`$\forall$`| $\forall$ | 任意 
+`$\exist$`| $\exist$ | 存在 
+`$\lnot$`| $\lnot$ | 
+`$\partial$`|$\partial$ | 
+`$\hat{y}$`|$\hat{y}$ | 期望值 
+`$\check{y}$`|$\check{y}$ |  
+`$\overline{a+b+c+d}$`|$\overline{a+b+c+d}$ | 平均值 
+`$\underline{a+b+c+d}$`|$\underline{a+b+c+d}$ |  
+`\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}`|$\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}$ |  
+`$\lbrace \rbrace$`|$\lbrace \rbrace$ |  
 
-## 1.9  矩阵
+## 1.9  块
+### 1.9.1 矩阵
+
 `\begin{matrix}` 标识开始
 `\end{matrix}`   标识结束
 `pmatrix` 小括号外框
@@ -146,7 +180,21 @@ a_{10}&a_{11}&{\cdots}&{a_{1n}}\\
 a_{m0}&a_{m1}&{\cdots}&{a_{mn}}\\
 \end{vmatrix}
 $$
+### 1.9.2 分段函数
+
+示例：
+$$
+X(m,n) =
+\begin{cases}
+x(n+1) & x \leq -1, \\
+x(n) & -1 < x < 1, \\
+x(n-1) & x \geq 1
+\end{cases}
+$$
+
+
 ## 1.10  方程组
+
 例：
 $$
 \begin{cases}
@@ -156,3 +204,85 @@ a_3x+b_3y+c_3z=d_3\\
 \end{cases}
 $$
 
+## 1.11 箭头符号
+
+### 1.11.1 基本箭头
+
+| 符号 | MarkDown |
+| ---- | -------- |
+| $\uparrow$ | `$\uparrow$` |
+| $\Uparrow$ | `$\Uparrow$` |
+| $\downarrow$ | `$\downarrow$` |
+| $\Downarrow$ | `$\Downarrow$` |
+| $\leftarrow$ | `$\leftarrow$` |
+| $\Leftarrow$ | `$\Leftarrow$` |
+| $\rightarrow$ | `$\rightarrow$` |
+| $\Rightarrow$ | `$\Rightarrow$` |
+| $\updownarrow$ | `$\updownarrow$` |
+| $\Updownarrow$ | `$\Updownarrow$` |
+| $\leftrightarrow$ | `$\leftrightarrow$` |
+
+### 1.11.2 长箭头
+
+| 符号 | MarkDown |
+| ---- | -------- |
+| $\longleftarrow$ | `$\longleftarrow$` |
+| $\Longleftarrow$ | `$\Longleftarrow$` |
+| $\longrightarrow$ | `$\longrightarrow$` |
+| $\Longrightarrow$ | `$\Longrightarrow$` |
+| $\longleftrightarrow$ | `$\longleftrightarrow$` |
+| $\Longleftrightarrow$ | `$\Longleftrightarrow$` |
+
+### 1.11.3 更多
+
+| 符号 | MarkDown |
+| ---- | -------- |
+| $\twoheadrightarrow$ | `$\twoheadrightarrow$` |
+| $\rightarrowtail$ | `$\rightarrowtail$` |
+| $\looparrowright$ | `$\looparrowright$` |
+| $\curvearrowright$ | `$\curvearrowright$` |
+| $\circlearrowright$ | `$\circlearrowright$` |
+| $\Rsh$ | `$\Rsh$` |
+| $\multimap$ | `$\multimap$` |
+| $\leftrightsquigarrow$ | `$\leftrightsquigarrow$` |
+| $\rightsquigarrow$ | `$\rightsquigarrow$` |
+| $\leadsto$ | `$\leadsto$` |
+| $\nearrow$ | `$\nearrow$` |
+| $\searrow$ | `$\searrow$` |
+| $\swarrow$ | `$\swarrow$` |
+| $\nwarrow$ | `$\nwarrow$` |
+| $\nleftarrow$ | `$\nleftarrow$` |
+| $\nrightarrow$ | `$\nrightarrow$` |
+| $\nLeftarrow$ | `$\nLeftarrow$` |
+| $\nRightarrow$ | `$\nRightarrow$` |
+| $\nleftrightarrow$ | `$\nleftrightarrow$` |
+| $\nLeftrightarrow$ | `$\nLeftrightarrow$` |
+| $\dashrightarrow$ | `$\dashrightarrow$` |
+| $\dashleftarrow$ | `$\dashleftarrow$` |
+| $\leftleftarrows$ | `$\leftleftarrows$` |
+| $\leftrightarrows$ | `$\leftrightarrows$` |
+| $\Lleftarrow$ | `$\Lleftarrow$` |
+| $\twoheadleftarrow$ | `$\twoheadleftarrow$` |
+| $\leftarrowtail$ | `$\leftarrowtail$` |
+| $\looparrowleft$ | `$\looparrowleft$` |
+| $\curvearrowleft$ | `$\curvearrowleft$` |
+| $\circlearrowleft$ | `$\circlearrowleft$` |
+| $\Lsh$ | `$\Lsh$` |
+| $\mapsto$ | `$\mapsto$` |
+| $\hookleftarrow$ | `$\hookleftarrow$` |
+| $\hookrightarrow$ | `$\hookrightarrow$` |
+| $\upharpoonright$ | `$\upharpoonright$` |
+| $\upharpoonleft$ | `$\upharpoonleft$` |
+| $\downharpoonright$ | `$\downharpoonright$` |
+| $\downharpoonleft$ | `$\downharpoonleft$` |
+| $\leftharpoonup$ | `$\leftharpoonup$` |
+| $\rightharpoonup$ | `$\rightharpoonup$` |
+| $\leftharpoondown$ | `$\leftharpoondown$` |
+| $\rightharpoondown$ | `$\rightharpoondown$` |
+| $\upuparrows$ | `$\upuparrows$` |
+| $\downdownarrows$ | `$\downdownarrows$` |
+| $\rightrightarrows$ | `$\rightrightarrows$` |
+| $\rightleftarrows$ | `$\rightleftarrows$` |
+| $\rightrightarrows$ | `$\rightrightarrows$` |
+| $\rightleftarrows$ | `$\rightleftarrows$` |
+| $\rightleftharpoons$ | `$\rightleftharpoons$` |
