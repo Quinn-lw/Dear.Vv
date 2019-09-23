@@ -69,8 +69,6 @@ set hive.mapred.mode=true;
 
 
 
-
-
 ## 常用操作
 
 ### 导出数据
@@ -105,6 +103,32 @@ SELECT count(DISTINCT test.dqcode)
 GROUP BY test.sfcode;
 ```
 
+### LOAD DATA FROM CSV
+```sql
+DROP TABLE temp.t_ic_jindie;
+CREATE TABLE `temp.t_ic_jindie`(
+  `ic_no` string, 
+  `ic_date` string, 
+  `price_1` string, 
+  `sub_price` string, 
+  `price_2` string, 
+  `cm_code` string, 
+  `cm_name` string, 
+  `pk_code` string, 
+  `pk_name` string)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+    "separatorChar" = ",",
+    "quoteChar"     = "'",
+    "escapeChar"    = "\\"
+)
+STORED AS TEXTFILE;
+
+load data local inpath '/root/20190801_data.csv' into table temp.t_ic_jindie;
+```
+
+
+
 ### map/reduce数目
 
 减少map数目：
@@ -128,9 +152,65 @@ reduce数目设置：
 　reducer数=min(参数2,总输入数据量/参数1)
 　set mapred.reduce.tasks：每个任务默认的reduce数目。典型为0.99*reduce槽数，hive将其设置为-1，自动确定reduce数目。
 
-## 用户管理
+## FUNC
 
-### 添加用户
+### UDF
+
+Maven依赖配置
+
+pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fpx.hiveudf</groupId>
+    <artifactId>datefunc</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- 设置版本参数 -->
+    <properties>
+        <hadoop.version>3.0.0-cdh6.1.1</hadoop.version>
+        <hive.version>2.1.1-cdh6.1.1</hive.version>
+    </properties>
+
+    <!-- 由于使用CDH的hadoop和hive，需要添加CDH的官方repository -->
+    <!-- 如果是Apache版本的hadoop和hive，则不需要添加该repository -->
+    <repositories>
+        <repository>
+            <id>cloudera</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+        </repository>
+    </repositories>
+
+    <!-- 添加依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>${hive.version}}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
+```
+
+
+
+
+
 
 ## 权限管理
 
@@ -221,17 +301,17 @@ principal_specification   : USER user   | GROUP group   | ROLE role
 
 HIVE支持以下权限：
 
-| 权限名称      | 含义                                                         |
-| ------------- | ------------------------------------------------------------ |
-| ALL           | 所有权限                                                     |
+| 权限名称      | 含义                                              |
+| ------------- | ------------------------------------------------|
+| ALL           | 所有权限                                         |
 | ALTER         | 允许修改元数据（modify metadata data of object）---表信息数据 |
 | UPDATE        | 允许修改物理数据（modify physical data of object）---实际数据 |
-| CREATE        | 允许进行Create操作                                           |
-| DROP          | 允许进行DROP操作                                             |
-| INDEX         | 允许建索引（目前还没有实现）                                 |
-| LOCK          | 当出现并发的使用允许用户进行LOCK和UNLOCK操作                 |
-| SELECT        | 允许用户进行SELECT操作                                       |
-| SHOW_DATABASE | 允许用户查看可用的数据库                                     |
+| CREATE        | 允许进行Create操作                                |
+| DROP          | 允许进行DROP操作                                  |
+| INDEX         | 允许建索引（目前还没有实现）                         |
+| LOCK          | 当出现并发的使用允许用户进行LOCK和UNLOCK操作          |
+| SELECT        | 允许用户进行SELECT操作                             |
+| SHOW_DATABASE | 允许用户查看可用的数据库                            |
 
 ```sql
 GRANT priv_type [(column_list)] [, priv_type [(column_list)]] ... [ON object_type] TO principal_specification [, principal_specification] ... [WITH GRANT OPTION] 
