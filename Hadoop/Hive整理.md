@@ -576,5 +576,24 @@ union all用好，可减少表的扫描次数，减少job的个数,通常预先�
 
 [^Shuffle]: Shuffle描述着数据从map task输出到reduce task输入的这段过程。shuffle是连接Map和Reduce之间的桥梁，Map的输出要用到Reduce中必须经过shuffle这个环节，shuffle的性能高低直接影响了整个程序的性能和吞吐量。因为在分布式情况下，reduce task需要跨节点去拉取其它节点上的map task结果。这一过程将会产生网络资源消耗和内存，磁盘IO的消耗。通常shuffle分为两部分：Map阶段的数据准备和Reduce阶段的数据拷贝处理。一般将在map端的Shuffle称之为Shuffle Write，在Reduce端的Shuffle称之为Shuffle Read
 
+## 课外补充
+
+### group by和count(distinct)在去重上的区别
+
+```sql
+select a,count(distinct b) from t group by a;
+select tt.a,count(tt.b) from (select a,b from t group by a,b)tt group by tt.a;
+```
+
+​    上面两句代码产生的结果是一样的，但是两者从效率和空间复杂度上来讲，是有很大的差别的。
+
+​    distinct会将b列所有的数据保存到内存中，形成一个类似hash的结构，速度是十分的块；但是在大数据背景下，因为b列所有的值都会形成以key值，极有可能发生OOM。
+
+​    group by会先把b列的值进行排序，如果以快速派序来说的话，他的空间复杂度就是O(1)，时间复杂度是O（nlogn），这样在大数据的环境下，只有排序阶段会比较慢，时间复杂度是O(nlogn)。
+
+​    两者比较来说，distinct 耗费内存，但是效率极高，但是数据较大时，可能会产生OOM；group by如果在时间复杂度允许的情况下，可以展现出突出的空间复杂度的优势。
+
+​    最后，对于Hive来说，含有distinct的HQL语句，如果遇到瓶颈，想要调优，第一时间都是想到用group by来替换distinct来实现对数据的去重。
+
 
 
