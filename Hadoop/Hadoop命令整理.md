@@ -202,6 +202,59 @@ $ sqoop import \
 | `--incremental (mode)` | append：追加，比如对大于last-value指定的值之后的记录进行追加导入。lastmodified：最后的修改时间，追加last-value指定的日期之后的记录 |
 | `--last-value (value)` | 指定自从上次导入后列的最大值（大于该指定的值），也可以自己设定某一值 |
 
+如：增量导入数据到 hive 中， mode=append
+
+```shell
+$ bin/sqoop import \
+--connect jdbc:mysql://hadoop102:3306/company \
+--username root \
+--password 000000 \
+--table staff \
+--num-mappers 1 \
+--fields-terminated-by "\t" \
+--target-dir /user/hive/warehouse/staff_hive \
+--check-column id \
+--incremental append \
+--last-value 3
+```
+
+**尖叫提示**： append 不能与–hive-等参数同时使用（Append mode for hive imports is not yetsupported. Please remove the parameter –append-mode）
+
+```shell
+先在 mysql 中建表并插入几条数据：
+mysql> create table company.staff_timestamp(id int(4), name varchar(255), sex varchar(255),
+last_modified timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE
+CURRENT_TIMESTAMP);
+
+mysql> insert into company.staff_timestamp (id, name, sex) values(1, 'AAA', 'female');
+mysql> insert into company.staff_timestamp (id, name, sex) values(2, 'BBB', 'female');
+
+先导入一部分数据：
+bin/sqoop import \
+--connect jdbc:mysql://hadoop102:3306/company \
+--username root \
+--password 000000 \
+--table staff_timestamp \
+--delete-target-dir \
+--m 1
+再增量导入一部分数据：
+mysql> insert into company.staff_timestamp (id, name, sex) values(3, 'CCC', 'female');
+$ bin/sqoop import \
+--connect jdbc:mysql://hadoop102:3306/company \
+--username root \
+--password 000000 \
+--table staff_timestamp \
+--check-column last_modified \
+--incremental lastmodified \
+--last-value "2018-06-28 22:20:38" \
+--m 1 \
+--append
+```
+
+**尖叫提示：** 使用 lastmodified 方式导入数据要指定增量数据是要–append（追加）还是要–merge-key（合并）
+
+**尖叫提示：** last-value 指定的值是会包含于增量导入的数据中
+
 #### 2.5 合并hdfs文件
 
 > 将HDFS中不同目录下面的数据合在一起，并存放在指定的目录中
