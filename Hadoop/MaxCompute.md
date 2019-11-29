@@ -741,6 +741,11 @@ url_encode('Exaple for url_encode :// dsf(fasfs)', 'GBK') = ""Exaple+for+url_enc
 
 #### 窗口函数
 
+开窗数据范围
+
+- 如果 ROWS BETWEEN..AND 沒有指明，默認為：RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW，即從最開始行到當前行
+- 如果要选取所有行，需指定条件并去重：ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+
 ##### dense_rank
 
 ```
