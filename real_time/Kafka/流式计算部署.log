@@ -1,0 +1,85 @@
+# 安装confluent
+wget http://packages.confluent.io/archive/5.1/confluent-5.1.0-2.11.tar.gz
+tar -xzvf confluent-5.1.0-2.11.tar.gz
+cp -R confluent-5.1.0 /opt/
+
+# 添加驱动
+cp debezium-connector-mysql/*jar /opt/confluent-5.1.0/share/java/kafka/
+cp debezium-connector-mongodb/*jar /opt/confluent-5.1.0/share/java/kafka/
+或者
+confluent-hub install debezium/debezium-connector-mysql:0.8.3
+
+# 设置mysql
+## Enabling the binlog
+    server-id         = 223344
+    log_bin           = mysql-bin
+    binlog_format     = row
+    binlog_row_image  = full
+    expire_logs_days  = 10
+## Create a MySQL user for the connector
+A MySQL user must be defined that has all of the following permissions on all of the databases that the connector will monitor:
+    SELECT - enables the connector to select rows from tables in databases; used only when performing a snapshot
+    RELOAD - enables the connector of the FLUSH statement to clear or reload various internal caches, flush tables, or acquire locks; used only when performing a snapshot
+    SHOW DATABASES - enables the connector to see database names by issuing the SHOW DATABASE statement; used only when performing a snapshot
+    REPLICATION SLAVE - enables the connector to connect to and read the binlog of its MySQL server; always required for the connector
+    REPLICATION CLIENT - enables the use of SHOW MASTER STATUS, SHOW SLAVE STATUS, and SHOW BINARY LOGS; always required for the connector
+```
+    GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium' IDENTIFIED BY 'dbz';
+
+## 查看mysql serverid
+show variables like '%serve_id%';
+
+
+
+-- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - --
+[root@test-op77 kafka]# confluent-hub  install debezium/debezium-connector-mysql:0.8.3
+Do you want to install this into /opt/confluent-5.1.0/share/confluent-hub-components? (yN) y
+
+ 
+Component's license: 
+Apache 2.0 
+https://github.com/debezium/debezium/blob/master/LICENSE.txt 
+I agree to the software license agreement (yN) y
+
+You are about to install 'debezium-connector-mysql' from Debezium Community, as published on Confluent Hub. 
+Do you want to continue? (yN) y
+
+Downloading component Debezium MySQL CDC Connector 0.8.3, provided by Debezium Community from Confluent Hub and installing into /opt/confluent-5.1.0/share/confluent-hub-components 
+Detected Worker's configs: 
+  1. Standard: /opt/confluent-5.1.0/etc/kafka/connect-distributed.properties 
+  2. Standard: /opt/confluent-5.1.0/etc/kafka/connect-standalone.properties 
+  3. Standard: /opt/confluent-5.1.0/etc/schema-registry/connect-avro-distributed.properties 
+  4. Standard: /opt/confluent-5.1.0/etc/schema-registry/connect-avro-standalone.properties 
+  5. Based on CONFLUENT_CURRENT: /tmp/confluent.lHMayU7w/connect/connect.properties 
+Do you want to update all detected configs? (yN) y
+
+Adding installation directory to plugin path in the following files: 
+  /opt/confluent-5.1.0/etc/kafka/connect-distributed.properties 
+  /opt/confluent-5.1.0/etc/kafka/connect-standalone.properties 
+  /opt/confluent-5.1.0/etc/schema-registry/connect-avro-distributed.properties 
+  /opt/confluent-5.1.0/etc/schema-registry/connect-avro-standalone.properties 
+  /tmp/confluent.lHMayU7w/connect/connect.properties 
+ 
+Completed 
+[root@test-op77 etc]# mkdir /opt/confluent-5.1.0/etc/kafka-connect-debezium
+[root@test-op77 etc]# cd /opt/confluent-5.1.0/etc/kafka-connect-debezium/
+[root@test-op77 kafka-connect-debezium]# vi debezium_mysql_test77.json
+{
+  "name": "test-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "database.hostname": "10.104.6.77",
+    "database.port": "3306",
+    "database.user": "debezium",
+    "database.password": "dbzm@4PX",
+    "database.server.id": "12354",
+    "database.server.name": "test77",
+    "database.whitelist": "test",
+    "database.history.kafka.bootstrap.servers": "10.104.6.77:9092",
+    "database.history.kafka.topic": "dbhistory.test77"
+    "include.schema.changes": "true"
+  }
+}
+[root@test-op77 kafka-connect-debezium]# curl -X POST -H "Content-Type: application/json" --data @debezium_mysql_test77.json  http://localhost:8083/connectors
+{"name":"test-connector","config":{"connector.class":"io.debezium.connector.mysql.MySqlConnector","database.hostname":"10.104.6.77","database.port":"3306","database.user":"debezium","database.password":"dbzm@4PX","database.server.id":"12354","database.server.name":"test77","database.whitelist":"test","database.history.kafka.bootstrap.servers":"10.104.6.77:9092","database.history.kafka.topic":"dbhistory.test77","include.schema.changes":"true","name":"test-connector"},"tasks":[],"type":null}
+
